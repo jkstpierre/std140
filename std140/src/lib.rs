@@ -200,6 +200,26 @@ where
     }
 }
 
+impl<T, const LEN: usize> Deref for array<T, { LEN }>
+where
+    T: Std140ArrayElement,
+{
+    type Target = [ArrayElementWrapper<T>; LEN];
+
+    fn deref(&self) -> &Self::Target {
+        &self.internal
+    }
+}
+
+impl<T, const LEN: usize> DerefMut for array<T, { LEN }>
+where
+    T: Std140ArrayElement,
+{
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.internal
+    }
+}
+
 impl<T, const LEN: usize> fmt::Debug for array<T, { LEN }>
 where
     T: Std140ArrayElement + fmt::Debug,
