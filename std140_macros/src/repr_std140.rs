@@ -57,6 +57,8 @@ pub fn expand_repr_std140(input: &DeriveInput) -> Result<TokenStream, String> {
                 #impl_std140_struct
             };
         };
+        
+        println!("{:?}", generated);
 
         Ok(generated)
     } else {
